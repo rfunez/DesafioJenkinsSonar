@@ -18,7 +18,9 @@ pipeline {
                 jdk 'java8'
             }
             steps {
-                sh 'mvn clean install'
+                catchError(buildResult: 'SUCCESS', message: 'Ha fallado el Build', stageResult: 'FAILURE') {
+                          sh 'mvn clean install'
+                }
             }
         }
         stage ('Sonar Analysis') {
