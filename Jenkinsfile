@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Run integration test') {
             steps {
-                sh 'java -cp target/classes com.example.bank.App'
+                sh 'mvn exec:java -Dexec.mainClass="com.example.bank.App"'
             }
         }
         stage ('Sonar Analysis') {
