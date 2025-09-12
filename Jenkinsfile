@@ -40,6 +40,7 @@ pipeline {
         }
         stage('Run integration test') {
             steps {
+                sh 'sleep 60'
                 sh 'mvn exec:java -Dexec.mainClass="com.example.bank.App"'
             }
         }
