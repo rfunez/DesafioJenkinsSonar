@@ -38,6 +38,16 @@ pipeline {
                 }
             }
         }
+        stage('Run integration test') {
+            tools {
+                jdk 'java8'
+            }
+            steps {
+                sh 'ls -latr'
+                sh 'javac App.java'
+                sh 'java App'
+            }
+        }
         stage ('Sonar Analysis') {
             steps {
                 catchError(buildResult: 'SUCCESS', message: 'Failed test', stageResult: 'FAILURE') {
