@@ -55,7 +55,7 @@ pipeline {
         }
         stage ('Quality Gates') {
             steps {
-                timeout(time: 120, unit: 'SECONDS') {
+                timeout(time: 5, unit: 'MINUTES') {
                        waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube'
                 }
             }
@@ -63,7 +63,9 @@ pipeline {
     }
     post {
          always {
-                cleanWs()
+            sh 'docker stop mysql ; docker rm mysql'
+            sh 'docker rmi ${image}'
+            cleanWs()
          }
     }
 }
