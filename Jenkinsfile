@@ -9,7 +9,7 @@ pipeline {
     
     environment {
         MYSQL_ROOT_PASSWORD = 'root'
-        MYSQL_DATABASE = 'testdb'
+        MYSQL_DATABASE = 'test_db'
         MYSQL_USER = 'test'
         MYSQL_PASSWORD = 'test'
         image = 'lts-oraclelinux9'
