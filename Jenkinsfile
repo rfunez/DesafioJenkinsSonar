@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Run integration test') {
             steps {
-                sh 'java jar target/Banking-1.0.0-SNAPSHOT.jar'
+                sh 'java -cp target/classes com.example.bank.App'
             }
         }
         stage ('Sonar Analysis') {
@@ -62,6 +62,7 @@ pipeline {
     }
     post {
          always {
+                cleanWs()
                 sh 'docker stop mysql;docker rm mysql'
                 sh 'docker rmi ${image}'
          }
