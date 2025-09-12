@@ -12,7 +12,7 @@ pipeline {
         MYSQL_DATABASE = 'test_db'
         MYSQL_USER = 'test'
         MYSQL_PASSWORD = 'test'
-        image = 'lts-oraclelinux9'
+        image = 'mysql:lts-oraclelinux9'
     }
     
     stages {
