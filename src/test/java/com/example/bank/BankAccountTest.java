@@ -13,7 +13,7 @@ public class BankAccountTest {
 
     @Test
     void testDeposit() {
-        BankAccount account = new BankAccount(60.0);
+        BankAccount account = new BankAccount(50.0);
         account.deposit(25.0);
         assertEquals(75.0, account.getBalance());
     }
@@ -27,7 +27,7 @@ public class BankAccountTest {
 
     @Test
     void testWithdrawInsufficientFunds() {
-        BankAccount account = new BankAccount(25.0);
+        BankAccount account = new BankAccount(20.0);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             account.withdraw(30.0);
         });
