@@ -19,7 +19,7 @@ pipeline {
         stage ('Startup Mysql Database server') {
             steps {
               echo '******Starting mysql*******'
-              sh 'docker run --name mysql -d -p 3306:3306 --network jenkins -e MYSQL_DATABASE=${MYSQL_DATABASE} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_USER=${MYSQL_USER} -e MYSQL_PASSWORD=${MYSQL_PASSWORD} ${image}' 
+              sh 'docker run --name mysql -d -p 3306:3306 -e MYSQL_DATABASE=${MYSQL_DATABASE} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_USER=${MYSQL_USER} -e MYSQL_PASSWORD=${MYSQL_PASSWORD} ${image}' 
 
             }
         }
