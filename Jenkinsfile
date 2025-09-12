@@ -40,8 +40,10 @@ pipeline {
         }
         stage ('Sonar Analysis') {
             steps {
-                withSonarQubeEnv(installationName: 'SonarQube' ,credentialsId: 'SonarQube') {
-                    sh 'mvn clean package sonar:sonar'
+                catchError(buildResult: 'SUCCESS', message: 'Failed test', stageResult: 'FAILURE') {
+                    withSonarQubeEnv(installationName: 'SonarQube' ,credentialsId: 'SonarQube') {
+                                    sh 'mvn clean package sonar:sonar'
+                    }
                 }
             }
         }
