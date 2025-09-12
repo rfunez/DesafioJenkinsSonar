@@ -17,9 +17,11 @@ pipeline {
     
     stages {
         stage ('Startup Mysql Database server') {
-            echo '*****Starting mysql******'
-            sh 'docker run --name mysql -e MYSQL_DATABASE=${MYSQL_DATABASE} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_USER=${MYSQL_USER} -e MYSQL_PASSWORD=${MYSQL_PASSWORD} ${image}' 
+            steps {
+              echo '*****Starting mysql******'
+              sh 'docker run --name mysql -e MYSQL_DATABASE=${MYSQL_DATABASE} -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_USER=${MYSQL_USER} -e MYSQL_PASSWORD=${MYSQL_PASSWORD} ${image}' 
 
+            }
         }
         stage ('Checkout') {
             steps {
