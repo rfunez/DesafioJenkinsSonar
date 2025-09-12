@@ -63,8 +63,6 @@ pipeline {
     post {
          always {
                 cleanWs()
-                sh 'docker stop mysql;docker rm mysql'
-                sh 'docker rmi ${image}'
          }
     }
 }
