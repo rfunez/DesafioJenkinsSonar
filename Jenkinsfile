@@ -40,8 +40,7 @@ pipeline {
         }
         stage('Run integration test') {
             steps {
-                sh 'ls -latr'
-                sh 'java App'
+                sh 'java jar target/Banking-1.0.0-SNAPSHOT.jar'
             }
         }
         stage ('Sonar Analysis') {
