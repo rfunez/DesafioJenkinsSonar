@@ -14,6 +14,11 @@ pipeline {
         MYSQL_PASSWORD = 'test'
         image = 'mysql:lts-oraclelinux9'
     }
+
+    options {
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
+    }
+ 
     
     stages {
         stage ('Startup Mysql Database server') {
