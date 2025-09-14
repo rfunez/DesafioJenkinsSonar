@@ -75,16 +75,12 @@ pipeline {
                 '''
             }
         }
-        stage ('Login to ECR') {
+        stage ('Push to ECR') {
             steps {
                   withAWS(credentials: 'aws_credentials', profile: 'raul', region: 'eu-south-2') {
                          ecrLogin()
+                         sh 'docker push $ECR_REPO/jenkins/app'
                   }
-            }
-        }
-        stage ('Push app image to AWS ECR') {
-            steps {
-                  sh 'docker push $ECR_REPO/jenkins/app'
             }
         }
     }
