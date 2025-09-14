@@ -66,7 +66,7 @@ pipeline {
                 }
             }
         }
-        stage ('Build app image') {
+        stage ('Build app Docker image') {
             steps {
                  sh '''
                   docker build app .
