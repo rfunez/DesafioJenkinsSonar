@@ -67,18 +67,24 @@ pipeline {
             }
         }
         stage ('Build app image') {
-            sh '''
+            steps {
+                 sh '''
                   docker build app .
                   docker tag app $(ECR_REPO)/jenkins/app
                 '''
+            }
         }
         stage ('Login to ECR') {
-            withAWS(credentials: 'aws_credentials', profile: 'raul', region: 'eu-south-2') {
-                    ecrLogin()
+            steps {
+                  withAWS(credentials: 'aws_credentials', profile: 'raul', region: 'eu-south-2') {
+                         ecrLogin()
+                  }
             }
         }
         stage ('Push app image to AWS ECR') {
-            sh 'docker push $(ECR_REPO)/jenkins/app'
+            steps {
+                  sh 'docker push $(ECR_REPO)/jenkins/app'
+            }
         }
     }
     post {
