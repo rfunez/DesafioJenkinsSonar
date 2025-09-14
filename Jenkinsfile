@@ -69,7 +69,7 @@ pipeline {
         stage ('Build app Docker image') {
             steps {
                  sh '''
-                  docker build app .
+                  docker build -t app .
                   docker tag app $(ECR_REPO)/jenkins/app
                 '''
             }
