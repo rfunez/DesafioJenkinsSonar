@@ -31,7 +31,7 @@ pipeline {
         }
         stage ('Checkout') {
             steps {
-                git branch: 'develop', credentialsId: 'JenkinsSonar', url: 'git@github.com:rfunez/DesafioJenkinsSonar.git'
+                git branch: 'main', credentialsId: 'JenkinsSonar', url: 'git@github.com:rfunez/DesafioJenkinsSonar.git'
             }
         }
         stage ('Build') {
