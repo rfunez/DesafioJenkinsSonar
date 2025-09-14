@@ -77,7 +77,7 @@ pipeline {
                     ecrLogin()
             }
         }
-        stage ('Push app image to ECR') {
+        stage ('Push app image to AWS ECR') {
             sh 'docker push $(ECR_REPO)/jenkins/app'
         }
     }
