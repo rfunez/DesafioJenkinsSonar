@@ -78,8 +78,10 @@ pipeline {
         stage ('Push to ECR') {
             steps {
                   withAWS(credentials: 'aws_credentials', region: 'eu-south-2') {
-                         ecrLogin()
-                         sh 'docker push $ECR_REPO/jenkins/app'
+                         script {
+                              def token = ecrLogin(returnToken: true)
+                              echo "Token length: ${token.length()}"
+                         }
                   }
             }
         }
