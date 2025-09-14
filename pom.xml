@@ -7,7 +7,7 @@
     <!-- Identificación del proyecto -->
     <groupId>com.example.bank</groupId>
     <artifactId>Banking</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <!-- Tus dependencias -->

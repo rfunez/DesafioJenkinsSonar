@@ -13,6 +13,7 @@ pipeline {
         MYSQL_USER = 'test'
         MYSQL_PASSWORD = 'test'
         image = 'mysql:lts-oraclelinux9'
+        ECR_REPO = '390403867561.dkr.ecr.eu-south-2.amazonaws.com'
     }
 
     options {
@@ -64,6 +65,20 @@ pipeline {
                        waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube'
                 }
             }
+        }
+        stage ('Build app image') {
+            sh '''
+                  docker build app .
+                  docker tag app $(ECR_REPO)/jenkins/app
+                '''
+        }
+        stage ('Login to ECR') {
+            withAWS(credentials: 'aws_credentials', profile: 'raul', region: 'eu-south-2') {
+                    ecrLogin()
+            }
+        }
+        stage ('Push app image to ECR') {
+            sh 'docker push $(ECR_REPO)/jenkins/app'
         }
     }
     post {
