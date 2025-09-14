@@ -71,7 +71,7 @@ pipeline {
                  sh '''
                   ls -latr
                   docker build -t app .
-                  docker tag app $(ECR_REPO)/jenkins/app
+                  docker tag app $ECR_REPO/jenkins/app
                 '''
             }
         }
@@ -84,7 +84,7 @@ pipeline {
         }
         stage ('Push app image to AWS ECR') {
             steps {
-                  sh 'docker push $(ECR_REPO)/jenkins/app'
+                  sh 'docker push $ECR_REPO/jenkins/app'
             }
         }
     }
