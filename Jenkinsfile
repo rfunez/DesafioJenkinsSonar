@@ -77,9 +77,12 @@ pipeline {
         }
         stage ('Push to ECR') {
             steps {
+                script {
                   withDockerRegistry(credentialsId: 'ecr:eu-south-2:aws_credentials', url: 'https://390403867561.dkr.ecr.eu-south-2.amazonaws.com/jenkins/app') {
-                             docker.image("390403867561.dkr.ecr.eu-south-2.amazonaws.com/jenkins/app").push('latest')
-                  }
+                            def img = docker.image("390403867561.dkr.ecr.eu-south-2.amazonaws.com/jenkins/app")
+                            img.push()
+                  }  
+                }
             }
         }
     }
