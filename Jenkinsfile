@@ -31,7 +31,7 @@ pipeline {
         }
         stage ('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'JenkinsSonar', url: 'git@github.com:rfunez/DesafioJenkinsSonar.git'
+                git branch: "${env.BRANCH_NAME}", credentialsId: 'JenkinsSonar', url: 'git@github.com:rfunez/DesafioJenkinsSonar.git'
             }
         }
         stage ('Build') {
@@ -79,7 +79,7 @@ pipeline {
             steps {
                 script {
                   withDockerRegistry(credentialsId: 'ecr:eu-south-2:aws_credentials', url: 'https://390403867561.dkr.ecr.eu-south-2.amazonaws.com/jenkins/app') {
-                            def img = docker.image("390403867561.dkr.ecr.eu-south-2.amazonaws.com/jenkins/app")
+                            def img = docker.image("${env.ECR_REPO}/jenkins/app")
                             img.push()
                   }  
                 }
