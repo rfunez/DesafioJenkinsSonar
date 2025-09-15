@@ -82,6 +82,8 @@ pipeline {
                               def token = ecrLogin(returnToken: true)
                               echo "Token length: ${token.length()}"
                          }
+                         ecrLogin()
+                         sh 'docker push $ECR_REPO/jenkins/app
                   }
             }
         }
