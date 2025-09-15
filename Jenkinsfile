@@ -77,13 +77,8 @@ pipeline {
         }
         stage ('Push to ECR') {
             steps {
-                  withAWS(credentials: 'aws_credentials', region: 'eu-south-2') {
-                         script {
-                              def token = ecrLogin(returnToken: true)
-                              echo "Token length: ${token.length()}"
-                         }
-                         ecrLogin()
-                         sh 'docker push $ECR_REPO/jenkins/app'
+                  withDockerRegistry(credentialsId: 'ecr:eu-south-2:aws_credentials', url: 'https://390403867561.dkr.ecr.eu-south-2.amazonaws.com/jenkins/app') {
+                             docker.image("${env.ECR_REPO}/jenkins/app").push()
                   }
             }
         }
