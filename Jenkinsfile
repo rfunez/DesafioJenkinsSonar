@@ -83,7 +83,7 @@ pipeline {
                               echo "Token length: ${token.length()}"
                          }
                          ecrLogin()
-                         sh 'docker push $ECR_REPO/jenkins/app
+                         sh 'docker push $ECR_REPO/jenkins/app'
                   }
             }
         }
